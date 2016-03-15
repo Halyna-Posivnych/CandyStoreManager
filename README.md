@@ -1,2 +1,2 @@
 ### Candy store manager
-Application to manage candy store sales
+An application to manage candy store sales.
