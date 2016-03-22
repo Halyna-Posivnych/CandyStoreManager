@@ -1,0 +1,129 @@
+﻿<Window x:Class="CandyStore.DesktopUI.Windows.CandyStoreWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CandyStore.DesktopUI.Windows"
+        mc:Ignorable="d"
+        Icon="/Images/candyico.ico"
+        Title="Candy Store" Height="630" Width="900"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Image Source="/Images/candies.jpg" />
+        <TextBlock x:Name="loginTextBlock" Text="login" Margin="5" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Top" TextWrapping="Wrap"/>
+        <Grid>
+        <DockPanel>
+            <TabControl Opacity="0.8">
+                <TabItem Header="Candy info" Background="LightGreen" FontSize="16" FontWeight="Bold">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="98*"/>
+                            <ColumnDefinition Width="785*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Background="LightGreen" HorizontalAlignment="Center" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition Width="105"/>
+                                <ColumnDefinition Width="105"/>
+                                <ColumnDefinition Width="105"/>
+                                <ColumnDefinition Width="105"/>
+                                <ColumnDefinition Width="105"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" HorizontalAlignment="Center"  FontSize="14" Text="Id"/>
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Center"  FontSize="14" Text="Name"/>
+                            <TextBlock Grid.Column="2" HorizontalAlignment="Center"  FontSize="14" Text="Manufacturer"/>
+                            <TextBlock Grid.Column="3" HorizontalAlignment="Center"  FontSize="14" Text="Price, $"/>
+                            <TextBlock Grid.Column="4" HorizontalAlignment="Center"  FontSize="14" Text="SupplyQty, kg"/>
+                            <TextBlock Grid.Column="5" HorizontalAlignment="Center"  FontSize="14" Text="Promotion"/>
+                        </Grid>
+                        <ListBox Grid.Row="1" Name="candyListBox" FontSize="14" FontWeight="Medium" HorizontalAlignment="Center" Grid.Column="1">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="25"/>
+                                            <ColumnDefinition Width="105"/>
+                                            <ColumnDefinition Width="105"/>
+                                            <ColumnDefinition Width="105"/>
+                                            <ColumnDefinition Width="105"/>
+                                            <ColumnDefinition Width="105"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" HorizontalAlignment="Center"  Text="{Binding Id}"/>
+                                        <TextBlock Grid.Column="2" HorizontalAlignment="Center" Text="{Binding Manufacturer}"/>
+                                        <TextBlock Grid.Column="3" HorizontalAlignment="Center" Text="{Binding Path=Price, StringFormat={}{0:0.##}}"/>
+                                        <TextBlock Grid.Column="4" HorizontalAlignment="Center" Text="{Binding SupplyQty, StringFormat={}{0:0.##}}"/>
+                                        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Text="{Binding Promotion, StringFormat={}{0:0.##}%}"/>
+                                        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Text="{Binding Name}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Height="25" VerticalAlignment="Bottom" Grid.Column="1" Margin="0,0,10,0">
+                            <Button Name="addCandyButton" Content="Add candy ..." Width="130" Background="LightGreen" Margin="10,0,10,0" Click="addCandyButton_Click" />
+                            <Button Name="deleteCandyButton" Content="Delete" Width="130" Background="LightGreen" Margin="10,0,10,0" Click="deleteCandyButton_Click" />
+                            <Button Name="promotionCandyButton" Content="Promotion ..." Width="130" Background="LightGreen"  Margin="10,0,10,0" Click="promotionCandyButton_Click" />
+                            <Button Name="supplyCandyButton" Content="Add supply ..." Width="130" Background="LightGreen"  Margin="10,0,0,0" Click="supplyCandyButton_Click" />
+                        </StackPanel>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Purchase info" Background="LightBlue" FontSize="16" FontWeight="Bold">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Background="LightBlue" HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="155"/>
+                                <ColumnDefinition Width="105"/>
+                                <ColumnDefinition Width="105"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock HorizontalAlignment="Center"  Grid.Column="0"  FontSize="14" Text=" Id"/>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="1"  FontSize="14" Text="Customer Id"/>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="2"  FontSize="14" Text="Purchase time"/>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="3"  FontSize="14" Text="Cost, $"/>
+                            <TextBlock HorizontalAlignment="Center" Grid.Column="4"  FontSize="14" Text="User Id"/>
+                        </Grid>
+
+                        <ListBox Grid.Row="1" Name="purchaseListBox" FontSize="14" FontWeight="Medium" HorizontalAlignment="Center">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="155"/>
+                                            <ColumnDefinition Width="105"/>
+                                            <ColumnDefinition Width="105"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" HorizontalAlignment="Center" Text="{Binding Id}"/>
+                                        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Text="{Binding CustomerId}"/>
+                                        <TextBlock Grid.Column="2" HorizontalAlignment="Center" Text="{Binding PurchaseTime}"/>
+                                        <TextBlock Grid.Column="3" HorizontalAlignment="Center" Text="{Binding Path=Cost, StringFormat={}{0:0.##}}"/>
+                                        <TextBlock Grid.Column="4" HorizontalAlignment="Center" Text="{Binding UserId}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Height="25" VerticalAlignment="Bottom" Grid.Column="1" Margin="0,0,10,0">
+                            <Button Name="addPurchaseButton" Content="Add purchase" Width="130" Background="LightBlue" Margin="0,0,10,0" Click="addPurchaseButton_Click" Height="25" VerticalAlignment="Top" />
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            
+        </DockPanel>
+        </Grid>
+    </Grid>
+</Window>
